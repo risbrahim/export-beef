@@ -1,29 +1,29 @@
 body {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  padding: 0;
-  background-color: #f9f9f9;
+  background: #f9f9f9;
   color: #333;
 }
 
 header {
-  background-color: #004b23;
+  background: #004b23;
   color: white;
   text-align: center;
-  padding: 20px;
+  padding: 25px;
+}
+
+main {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 10px;
 }
 
 section {
-  padding: 20px;
-  margin: 10px auto;
-  max-width: 800px;
   background: white;
+  margin: 20px 0;
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-h3 {
-  color: #004b23;
 }
 
 .chart {
@@ -35,22 +35,22 @@ h3 {
 .bar {
   flex: 1;
   text-align: center;
-  padding: 10px;
+  padding: 15px;
   border-radius: 5px;
   color: white;
 }
 
 .current {
-  background-color: #b91c1c;
+  background: #b91c1c;
 }
 
 .future {
-  background-color: #16a34a;
+  background: #16a34a;
 }
 
 footer {
   text-align: center;
-  padding: 15px;
-  background-color: #004b23;
+  background: #004b23;
   color: white;
+  padding: 15px;
 }
