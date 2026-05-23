@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════
-   AgroTrace SC — script.js
+   ExBeef — script.js
    Semua logika, data simulasi, dan chart
 ═══════════════════════════════════════════════ */
 
