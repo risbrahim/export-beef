@@ -12,16 +12,39 @@ header {
   padding: 25px;
 }
 
-main {
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 10px;
+.tab {
+  overflow: hidden;
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
 }
 
-section {
-  background: white;
-  margin: 20px 0;
+.tab button {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 20px;
+  transition: 0.3s;
+  font-size: 16px;
+}
+
+.tab button:hover {
+  background-color: #bbb;
+}
+
+.tab button.active {
+  background-color: #004b23;
+  color: white;
+}
+
+.tabcontent {
+  display: none;
   padding: 20px;
+  border-top: none;
+  max-width: 900px;
+  margin: 20px auto;
+  background: white;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
