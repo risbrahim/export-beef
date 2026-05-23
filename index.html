@@ -3,55 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hasil Penelitian - Integrasi Sistem Traceability dan Forecasting</title>
+  <title>Integrasi Traceability & Forecasting</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>Hasil Penelitian</h1>
-    <h2>Integrasi Sistem Traceability dan Forecasting dalam Supply Chain Daging Sapi Ekspor</h2>
+    <h1>Integrasi Sistem Traceability & Forecasting</h1>
+    <h2>Rantai Pasok Agroindustri Daging Sapi Ekspor</h2>
   </header>
 
-  <section id="efisiensi">
-    <h3>📊 Pengurangan Lead Time</h3>
-    <p>Total waktu proses berkurang dari <strong>60 jam</strong> menjadi <strong>19 jam</strong> melalui digitalisasi dokumen, integrasi distribusi real-time, dan forecasting permintaan.</p>
-    <div class="chart">
-      <div class="bar current">60 Jam</div>
-      <div class="bar future">19 Jam</div>
-    </div>
-  </section>
+  <main>
+    <section id="efisiensi">
+      <h3>📊 Efisiensi Operasional</h3>
+      <p>Lead time berkurang dari <strong>60 jam</strong> menjadi <strong>19 jam</strong> berkat digitalisasi dan integrasi sistem forecasting.</p>
+      <div class="chart">
+        <div class="bar current">60 Jam</div>
+        <div class="bar future">19 Jam</div>
+      </div>
+    </section>
 
-  <section id="transparansi">
-    <h3>🔍 Peningkatan Transparansi Data</h3>
-    <p>Sistem traceability memungkinkan pelacakan riwayat produk dari peternak hingga konsumen akhir secara cepat dan akurat.</p>
-    <img src="traceability-diagram.png" alt="Diagram Traceability">
-  </section>
+    <section id="traceability">
+      <h3>🔍 Transparansi Data</h3>
+      <p>Sistem traceability memungkinkan pelacakan asal ternak, proses RPH, distribusi, hingga konsumen akhir secara real‑time.</p>
+    </section>
 
-  <section id="distribusi">
-    <h3>🚚 Efisiensi Distribusi</h3>
-    <p>Routing dan scheduling digital mempercepat pengiriman produk dan mengurangi waktu tunggu logistik.</p>
-  </section>
+    <section id="forecasting">
+      <h3>🚚 Forecasting & Distribusi</h3>
+      <p>Peramalan permintaan membantu pengendalian stok dan mengurangi risiko overstock serta food waste.</p>
+      <canvas id="forecastChart"></canvas>
+    </section>
 
-  <section id="foodwaste">
-    <h3>🥩 Pengurangan Risiko Food Waste</h3>
-    <p>Forecasting permintaan membantu pengendalian stok sehingga risiko overstock dan kerusakan produk dapat ditekan.</p>
-  </section>
-
-  <section id="keamanan">
-    <h3>🧠 Peningkatan Keamanan Pangan</h3>
-    <p>Sistem digital memungkinkan monitoring kualitas produk secara real-time untuk mendukung standar keamanan pangan internasional.</p>
-  </section>
-
-  <section id="dashboard">
-    <h3>📈 Dukungan Pengambilan Keputusan</h3>
-    <p>Dashboard monitoring dan database terintegrasi membantu stakeholder memperoleh informasi secara real-time untuk keputusan operasional.</p>
-    <button onclick="showDashboard()">Lihat Simulasi Dashboard</button>
-  </section>
+    <section id="keamanan">
+      <h3>🥩 Keamanan Pangan</h3>
+      <p>Monitoring kualitas produk berbasis sensor mendukung standar keamanan pangan internasional.</p>
+    </section>
+  </main>
 
   <footer>
-    <p>© 2026 Kelompok 16 - IPB University</p>
+    <p>© 2026 Kelompok 16 – IPB University</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
