@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgroTrace SC — Traceability & Forecasting Agroindustri Daging Ayam</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  SIDEBAR                                   -->
+<!-- ══════════════════════════════════════════ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-icon">🐔</div>
+    <div class="brand-text">
+      <h2>AgroTrace SC</h2>
+      <p>Supply Chain Intelligence</p>
+    </div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-label">Utama</div>
+    <a href="#" class="nav-item active" data-page="dashboard" onclick="showPage('dashboard',this)">
+      <i class="fas fa-chart-pie"></i> Dashboard
+    </a>
+    <div class="nav-label" style="margin-top:18px">Inti Sistem</div>
+    <a href="#" class="nav-item" data-page="traceability" onclick="showPage('traceability',this)">
+      <i class="fas fa-route"></i> Traceability
+      <span class="nav-badge">Live</span>
+    </a>
+    <a href="#" class="nav-item" data-page="forecasting" onclick="showPage('forecasting',this)">
+      <i class="fas fa-chart-line"></i> Forecasting
+    </a>
+    <a href="#" class="nav-item" data-page="supplychain" onclick="showPage('supplychain',this)">
+      <i class="fas fa-project-diagram"></i> Peta Supply Chain
+    </a>
+    <div class="nav-label" style="margin-top:18px">Operasional</div>
+    <a href="#" class="nav-item" data-page="inventory" onclick="showPage('inventory',this)">
+      <i class="fas fa-warehouse"></i> Inventori
+    </a>
+    <a href="#" class="nav-item" data-page="laporan" onclick="showPage('laporan',this)">
+      <i class="fas fa-file-chart-line"></i> Laporan & Analitik
+    </a>
+    <a href="#" class="nav-item" data-page="masterdata" onclick="showPage('masterdata',this)">
+      <i class="fas fa-database"></i> Data Master
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <strong>Penelitian Tesis</strong><br>
+    Integrasi Traceability & Forecasting<br>Supply Chain Agroindustri Ayam
+  </div>
+</aside>
+
+<!-- ══════════════════════════════════════════ -->
+<!--  MAIN AREA                                 -->
+<!-- ══════════════════════════════════════════ -->
+<div class="main-wrapper">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <button class="burger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+    <div>
+      <div class="topbar-title" id="pageTitle">Dashboard Utama</div>
+      <div class="topbar-sub" id="pageSubtitle">Ringkasan operasional supply chain agroindustri daging ayam</div>
+    </div>
+    <div class="topbar-actions">
+      <span class="live-badge"><span class="live-dot"></span>Real-time</span>
+      <span class="timestamp" id="clock"></span>
+      <div class="btn-icon" onclick="refreshPage()" title="Refresh"><i class="fas fa-sync-alt"></i></div>
+    </div>
+  </header>
+
+  <!-- ── PAGE: DASHBOARD ── -->
+  <main class="page active" id="page-dashboard">
+<div class="academic-highlight">
+  <div class="academic-card">
+    <h3>Existing Lead Time</h3>
+    <p>60 Jam</p>
+  </div>
+
+  <div class="academic-card">
+    <h3>Future State</h3>
+    <p>19 Jam</p>
+  </div>
+
+  <div class="academic-card">
+    <h3>Efisiensi Sistem</h3>
+    <p>68%</p>
+  </div>
+
+  <div class="academic-card">
+    <h3>Traceability Coverage</h3>
+    <p>QR/RFID Active</p>
+  </div>
+</div>
+
+
+    <div class="kpi-grid">
+      <div class="kpi-card green">
+        <div class="kpi-icon green"><i class="fas fa-weight-hanging"></i></div>
+        <div class="kpi-value" id="kpi-produksi">51,240</div>
+        <div class="kpi-label">Total Produksi (kg/bulan)</div>
+        <div class="kpi-trend up"><i class="fas fa-arrow-up"></i> +5.2% vs bulan lalu</div>
+      </div>
+      <div class="kpi-card blue">
+        <div class="kpi-icon blue"><i class="fas fa-percentage"></i></div>
+        <div class="kpi-value" id="kpi-fulfill">93.4%</div>
+        <div class="kpi-label">Demand Fulfillment Rate</div>
+        <div class="kpi-trend up"><i class="fas fa-arrow-up"></i> +1.8% vs target</div>
+      </div>
+      <div class="kpi-card amber">
+        <div class="kpi-icon amber"><i class="fas fa-trash-alt"></i></div>
+        <div class="kpi-value" id="kpi-waste">3.7%</div>
+        <div class="kpi-label">Food Waste Rate</div>
+        <div class="kpi-trend down"><i class="fas fa-arrow-down"></i> -0.4% improvement</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-icon green"><i class="fas fa-bullseye"></i></div>
+        <div class="kpi-value" id="kpi-forecast-acc">91.2%</div>
+        <div class="kpi-label">Akurasi Forecasting</div>
+        <div class="kpi-trend up"><i class="fas fa-arrow-up"></i> MAPE 8.8%</div>
+      </div>
+      <div class="kpi-card blue">
+        <div class="kpi-icon blue"><i class="fas fa-clock"></i></div>
+        <div class="kpi-value" id="kpi-leadtime">2.4 hari</div>
+        <div class="kpi-label">Rata-rata Lead Time</div>
+        <div class="kpi-trend neutral"><i class="fas fa-minus"></i> Stabil dari target 3 hari</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-icon green"><i class="fas fa-truck"></i></div>
+        <div class="kpi-value" id="kpi-distribusi">94.1%</div>
+        <div class="kpi-label">Efisiensi Distribusi</div>
+        <div class="kpi-trend up"><i class="fas fa-arrow-up"></i> +2.1% vs last month</div>
+      </div>
+      <div class="kpi-card amber">
+        <div class="kpi-icon amber"><i class="fas fa-boxes"></i></div>
+        <div class="kpi-value" id="kpi-batch">18</div>
+        <div class="kpi-label">Batch Aktif Sekarang</div>
+        <div class="kpi-trend neutral"><i class="fas fa-circle"></i> Live tracking</div>
+      </div>
+      <div class="kpi-card blue">
+        <div class="kpi-icon blue"><i class="fas fa-money-bill-wave"></i></div>
+        <div class="kpi-value" id="kpi-nilai">Rp 3.1M</div>
+        <div class="kpi-label">Nilai Stok (Estimasi)</div>
+        <div class="kpi-trend neutral"><i class="fas fa-minus"></i> Harga rata-rata</div>
+      </div>
+    </div>
+
+    <div class="grid-2-1">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><i class="fas fa-chart-area"></i> Produksi vs Permintaan (12 Bulan)</div>
+          <span style="font-size:11px;color:var(--text3)">kg/bulan</span>
+        </div>
+        <div class="card-body"><canvas id="chartProduksi" height="200"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><i class="fas fa-chart-pie"></i> Distribusi Channel</div>
+        </div>
+        <div class="card-body">
+          <canvas id="chartChannel" height="180"></canvas>
+          <div id="channelLegend" style="margin-top:14px"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><i class="fas fa-thermometer-half"></i> Status Cold Storage</div>
+        </div>
+        <div class="card-body" id="storageList"></div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><i class="fas fa-route"></i> Batch Terbaru</div>
+          <a href="#" onclick="showPage('traceability', document.querySelector('[data-page=traceability]'))" style="font-size:12px;color:var(--primary);text-decoration:none;">Lihat semua →</a>
+        </div>
+        <div class="card-body" style="padding:0;overflow:auto">
+          <table class="data-table" id="recentBatches">
+            <thead><tr><th>Batch ID</th><th>Farm</th><th>Status</th><th>Berat (kg)</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-header">
+        <div class="card-title"><i class="fas fa-project-diagram"></i> Alur Supply Chain</div>
+      </div>
+      <div class="card-body">
+        <div class="sc-flow">
+          <div class="sc-node farm"><div class="sc-icon">🌾</div><div class="sc-label">Farm</div><div class="sc-sub">4 Aktif</div></div>
+          <div class="sc-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="sc-node processing"><div class="sc-icon">🔪</div><div class="sc-label">RPH / Proses</div><div class="sc-sub">1 Aktif</div></div>
+          <div class="sc-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="sc-node storage"><div class="sc-icon">❄️</div><div class="sc-label">Cold Storage</div><div class="sc-sub">5 Lokasi</div></div>
+          <div class="sc-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="sc-node distributor"><div class="sc-icon">🚛</div><div class="sc-label">Distribusi</div><div class="sc-sub">3 Armada</div></div>
+          <div class="sc-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="sc-node export hub"><div class="sc-icon">🏪</div><div class="sc-label">Export Hub</div><div class="sc-sub">282 Outlet</div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── PAGE: TRACEABILITY ── -->
+  <main class="page" id="page-traceability">
+    <div class="card" style="margin-bottom:24px">
+      <div class="card-header">
+        <div class="card-title"><i class="fas fa-search"></i> Lacak Batch</div>
+        <div style="display:flex;gap:8px">
+          <input type="text" id="batchSearch" class="input-search" placeholder="Cari Batch ID atau Farm..." oninput="filterBatches()">
+          <select class="input-search" id="batchFilter" style="width:160px" onchange="filterBatches()">
+            <option value="">Semua Status</option>
+            <option>Di Farm</option><option>Dalam Proses</option>
+            <option>Cold Storage</option><option>Distribusi</option>
+            <option>Export Hub</option><option>Terjual</option>
+          </select>
+        </div>
+      </div>
+      <div class="card-body" style="padding:0;overflow:auto">
+        <table class="data-table" id="traceTable">
+          <thead>
+            <tr>
+              <th>Batch ID</th><th>Farm Asal</th><th>Tgl Panen</th>
+              <th>Berat (kg)</th><th>Jumlah Ekor</th><th>Suhu (°C)</th>
+              <th>Kualitas</th><th>Status</th><th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="traceBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TIMELINE MODAL -->
+    <div id="timelineModal" class="modal-backdrop" style="display:none" onclick="closeModal()">
+      <div class="modal-box" onclick="event.stopPropagation()">
+        <div class="modal-header">
+          <div class="card-title"><i class="fas fa-route"></i> Timeline Batch <span id="modalBatchId"></span></div>
+          <button class="btn-icon" onclick="closeModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="timelineContent" style="padding:20px;overflow-y:auto;max-height:60vh"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── PAGE: FORECASTING ── -->
+  <main class="page" id="page-forecasting">
+    <div class="grid-2" style="margin-bottom:24px">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><i class="fas fa-sliders-h"></i> Parameter Forecasting</div>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label>Metode Forecasting</label>
+            <select class="input-full" id="fcMethod" onchange="updateForecasting()">
+              <option>SARIMA</option><option>ARIMA</option>
+              <option>Holt-Winters</option><option>Exponential Smoothing</option>
+              <option>Moving Average (MA-3)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Periode Prediksi (Bulan)</label>
+            <input type="range" id="fcPeriods" min="1" max="12" value="6" class="range-input" oninput="document.getElementById('fcPeriodsVal').textContent=this.value+' bulan';updateForecasting()">
+            <span id="fcPeriodsVal" style="font-size:12px;color:var(--primary);font-weight:600">6 bulan</span>
+          </div>
+          <div class="form-group">
+            <label>Faktor Musiman</label>
+            <select class="input-full">
+              <option>Aktif (Lebaran, Natal, Tahun Baru)</option>
+              <option>Nonaktif</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" style="width:100%;margin-top:8px" onclick="updateForecasting()">
+            <i class="fas fa-play"></i> Jalankan Forecast
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><i class="fas fa-trophy"></i> Perbandingan Akurasi Model</div>
+        </div>
+        <div class="card-body" style="padding:0;overflow:auto">
+          <table class="data-table" id="accTable">
+            <thead><tr><th>Metode</th><th>MAPE (%)</th><th>RMSE</th><th>MAE</th><th>Terbaik</th></tr></thead>
+            <tbody id="accBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><i class="fas fa-chart-line"></i> Grafik Forecasting Permintaan (kg)</div>
+        <span id="fcMethodLabel" style="font-size:12px;color:var(--primary);font-weight:600">SARIMA</span>
+      </div>
+      <div class="card-body"><canvas id="chartForecast" height="120"></canvas></div>
+    </div>
+  </main>
+
+  <!-- ── PAGE: SUPPLY CHAIN ── -->
+  <main class="page" id="page-supplychain">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header"><div class="card-title"><i class="fas fa-map-marked-alt"></i> Node Supply Chain</div></div>
+        <div class="card-body" id="scNodes"></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title"><i class="fas fa-chart-bar"></i> Utilisasi Kapasitas</div></div>
+        <div class="card-body"><canvas id="chartUtilisasi" height="280"></canvas></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:20px">
+      <div class="card-header"><div class="card-title"><i class="fas fa-stream"></i> Alur Rantai Pasok Detail</div></div>
+      <div class="card-body">
+        <div class="sc-flow-full" id="scFlowFull"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── PAGE: INVENTORY ── -->
+  <main class="page" id="page-inventory">
+    <div class="kpi-grid" id="invKpi"></div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><i class="fas fa-warehouse"></i> Status Inventori Per Lokasi</div>
+      </div>
+      <div class="card-body" id="invTable"></div>
+    </div>
+    <div class="card" style="margin-top:20px">
+      <div class="card-header"><div class="card-title"><i class="fas fa-chart-bar"></i> Perbandingan Stok vs Kapasitas</div></div>
+      <div class="card-body"><canvas id="chartInventory" height="100"></canvas></div>
+    </div>
+  </main>
+
+  <!-- ── PAGE: LAPORAN ── -->
+  <main class="page" id="page-laporan">
+    <div class="grid-2" style="margin-bottom:24px">
+      <div class="card">
+        <div class="card-header"><div class="card-title"><i class="fas fa-chart-bar"></i> Performa Bulanan (12 Bulan)</div></div>
+        <div class="card-body"><canvas id="chartPerforma" height="220"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title"><i class="fas fa-chart-line"></i> Tren Food Waste (%)</div></div>
+        <div class="card-body"><canvas id="chartWaste" height="220"></canvas></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><i class="fas fa-table"></i> Ringkasan Data Bulanan</div>
+        <button class="btn btn-secondary btn-sm" onclick="exportCSV()"><i class="fas fa-download"></i> Export CSV</button>
+      </div>
+      <div class="card-body" style="padding:0;overflow:auto">
+        <table class="data-table" id="laporanTable">
+          <thead><tr><th>Bulan</th><th>Produksi (kg)</th><th>Penjualan (kg)</th><th>Selisih</th><th>Waste (%)</th><th>Efisiensi (%)</th></tr></thead>
+          <tbody id="laporanBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── PAGE: MASTER DATA ── -->
+  <main class="page" id="page-masterdata">
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('farm',this)">🌾 Farm</button>
+      <button class="tab-btn" onclick="switchTab('distributor',this)">🚛 Distributor</button>
+      <button class="tab-btn" onclick="switchTab('export hub',this)">🏪 Export Hub</button>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="card-header">
+        <div class="card-title" id="masterTitle"><i class="fas fa-seedling"></i> Data Farm</div>
+        <button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Tambah</button>
+      </div>
+      <div class="card-body" style="padding:0;overflow:auto">
+        <table class="data-table"><thead id="masterHead"></thead><tbody id="masterBody"></tbody></table>
+      </div>
+    </div>
+  </main>
+
+</div><!-- /main-wrapper -->
+
+<script src="script.js"></script>
+</body>
+</html>
+
+<section class="stakeholder-section">
+  <h2>Stakeholder Mapping</h2>
+  <div class="stakeholder-grid">
+    <div class="stakeholder-box">Peternak</div>
+    <div class="stakeholder-box">RPH</div>
+    <div class="stakeholder-box">Distributor</div>
+    <div class="stakeholder-box">Eksportir</div>
+    <div class="stakeholder-box">Regulator</div>
+  </div>
+</section>
+
+<section class="compliance-section">
+  <h2>Export Compliance Monitoring</h2>
+  <ul>
+    <li>Halal Certification: Verified</li>
+    <li>Cold Chain Temperature: Stable</li>
+    <li>Export Document: Approved</li>
+    <li>Customs Clearance: Completed</li>
+  </ul>
+</section>
