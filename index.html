@@ -12,32 +12,39 @@
     <h2>Rantai Pasok Agroindustri Daging Sapi Ekspor</h2>
   </header>
 
-  <main>
-    <section id="efisiensi">
-      <h3>📊 Efisiensi Operasional</h3>
-      <p>Lead time berkurang dari <strong>60 jam</strong> menjadi <strong>19 jam</strong> berkat digitalisasi dan integrasi sistem forecasting.</p>
-      <div class="chart">
-        <div class="bar current">60 Jam</div>
-        <div class="bar future">19 Jam</div>
-      </div>
-    </section>
+  <!-- Tab Navigation -->
+  <div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'efisiensi')" id="defaultOpen">Efisiensi</button>
+    <button class="tablinks" onclick="openTab(event, 'traceability')">Transparansi</button>
+    <button class="tablinks" onclick="openTab(event, 'forecasting')">Forecasting</button>
+    <button class="tablinks" onclick="openTab(event, 'keamanan')">Keamanan</button>
+  </div>
 
-    <section id="traceability">
-      <h3>🔍 Transparansi Data</h3>
-      <p>Sistem traceability memungkinkan pelacakan asal ternak, proses RPH, distribusi, hingga konsumen akhir secara real‑time.</p>
-    </section>
+  <!-- Tab Content -->
+  <div id="efisiensi" class="tabcontent">
+    <h3>📊 Efisiensi Operasional</h3>
+    <p>Lead time berkurang dari <strong>60 jam</strong> menjadi <strong>19 jam</strong>.</p>
+    <div class="chart">
+      <div class="bar current">60 Jam</div>
+      <div class="bar future">19 Jam</div>
+    </div>
+  </div>
 
-    <section id="forecasting">
-      <h3>🚚 Forecasting & Distribusi</h3>
-      <p>Peramalan permintaan membantu pengendalian stok dan mengurangi risiko overstock serta food waste.</p>
-      <canvas id="forecastChart"></canvas>
-    </section>
+  <div id="traceability" class="tabcontent">
+    <h3>🔍 Transparansi Data</h3>
+    <p>Sistem traceability memungkinkan pelacakan asal ternak, proses RPH, distribusi, hingga konsumen akhir.</p>
+  </div>
 
-    <section id="keamanan">
-      <h3>🥩 Keamanan Pangan</h3>
-      <p>Monitoring kualitas produk berbasis sensor mendukung standar keamanan pangan internasional.</p>
-    </section>
-  </main>
+  <div id="forecasting" class="tabcontent">
+    <h3>🚚 Forecasting & Distribusi</h3>
+    <p>Peramalan permintaan membantu pengendalian stok dan mengurangi risiko overstock serta food waste.</p>
+    <canvas id="forecastChart"></canvas>
+  </div>
+
+  <div id="keamanan" class="tabcontent">
+    <h3>🥩 Keamanan Pangan</h3>
+    <p>Monitoring kualitas produk berbasis sensor mendukung standar keamanan pangan internasional.</p>
+  </div>
 
   <footer>
     <p>© 2026 Kelompok 16 – IPB University</p>
